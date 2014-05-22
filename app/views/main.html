@@ -1,36 +1,36 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">hotspot</h3>
-</div>
+<div class="container-fluid" style="background-color: #CED8F6;">
+  <div class="row" style="background-color: #0B3861;">
+    <div class="container">
+      <center>
+        <h1 style="color: #A9D0F5; font-size: 48px"><strong><em>Les Prénoms aux USA</em></strong></h1>
+        <hr>
+        <p style="color: #fefefe;">Quels sont les prénoms les plus répandus au USA ? Trouvez toutes les informations sur ce site ! Vous pouvez rechercher la popularité d'un prénom, les trier par ordre de popularité, et obtenir des informations en fonctions des années et des états.</p>
+      </center>
+    </div>    
+    <div class="row">
+      <div class="col-xs-7"></div>
+      <div class="col-xs-4">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control" ng-model="search" placeholder="Rechercher">
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <br>
+  <div class="col-sm-8">
+    <div class="well well-sm" ng-repeat="comment in comments | filter:{name:search}">
+      <h4 style="color: #5858FA; margin-left: 1em">
+        <strong>{{name.name}}</strong>
+      </h4>
+      <p style="margin-left: 5em">{{name.count}}</p>
+      <div class="pull-right">
+        <p style="color: #A4A4A4">{{name.state}}</p>
+      </div>
+      <br>
+      <div class="clearfix" ng-if="$index%2==1"></div>
+    </div>
+  </div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
-
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
 </div>
