@@ -2,9 +2,11 @@
   <div class="row" style="background-color: #0B3861;">
     <div class="container">
       <center>
-        <h1 style="color: #A9D0F5; font-size: 48px"><strong><em>Les Prénoms aux USA</em></strong></h1>
+        <h1 class="title"><strong><em>Popular Names in the US</em></strong></h1>
         <hr>
-        <p style="color: #fefefe;">Quels sont les prénoms les plus répandus au USA ? Trouvez toutes les informations sur ce site ! Vous pouvez rechercher la popularité d'un prénom, les trier par ordre de popularité, et obtenir des informations en fonctions des années et des états.</p>
+        <span class="description">
+          <p>What are the most popular names in the US ? Find all information on this website! You can search names by popularity, sort them by number of occurrence, and get information depending on years and states.</p>
+        </span>
       </center>
     </div>    
     <div class="row">
@@ -12,25 +14,139 @@
       <div class="col-xs-4">
         <div class="input-group">
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-          <input type="text" class="form-control" ng-model="search" placeholder="Rechercher">
+          <input type="text" class="form-control" ng-model="search" placeholder="Search">
         </div>
       </div>
     </div>
     <br>
   </div>
-  <br>
-  <div class="col-sm-8">
-    <div class="well well-sm" ng-repeat="comment in comments | filter:{name:search}">
-      <h4 style="color: #5858FA; margin-left: 1em">
-        <strong>{{name.name}}</strong>
-      </h4>
-      <p style="margin-left: 5em">{{name.count}}</p>
-      <div class="pull-right">
-        <p style="color: #A4A4A4">{{name.state}}</p>
+  <div class="row">
+    <div class="col-xs-5 col-sm-4">
+      <h4>Number of inputs: <strong>{{names.nhits}}</strong></h4>
+      <h4>Names displayed: <strong>{{names.parameters.rows}}</strong></h4>
+    </div>
+    <div class="col-xs-7 col-sm-8">
+      <div class="row">
+        <br>
+        <div class="col-xs-7">
+          <div class="col-sm-7">
+            <div class="row">
+              <button buttontype="button" class="btn btn-default" onclick="self.location.href='#/all'">Home</button>
+              <button buttontype="button" class="btn btn-default" onclick="self.location.href='#/top100'">Top 100</button>
+            </div>
+          </div>
+          <div class="col-sm-5 hidden-xs">
+            <ol class="breadcrumb">
+              <li><a href="#/mf?mf=m">M</a></li>
+              <li><a href="#/mf?mf=f">F</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-xs-5">
+          <div class="input-group">
+            <input type="text" class="form-control" id="an" placeholder="Year">
+            <span class="input-group-btn">
+              <button class="btn btn-default" onclick="self.location.href='#/annee?year='+an.value" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            </span>
+          </div>
+          <label>1910 - 2012</label>
+        </div>
       </div>
-      <br>
-      <div class="clearfix" ng-if="$index%2==1"></div>
     </div>
   </div>
-
+  <div class="col-sm-8">
+    <div class="panel panel-default" ng-repeat="record in names.records | filter:{fields:search}">
+      <div class="col-xs-3">
+        <span class="name">
+          <a href="#/name?nom=+{{record.fields.column_4}}"><strong>{{record.fields.column_4}}</strong></a>
+        </span>
+      </div>
+      <div class="col-xs-5">
+        <span class="content">
+          <div ng-controller="MainCtrl">
+            <div numberByYear>{{record.fields.column_5}} times in {{record.fields.column_3}}</div>
+          </div>
+        </span>
+      </div>
+      <div class="col-xs-3">
+        <span class="content">State: {{record.fields.column_1}}</span>
+      </div>
+      <div class="col-xs-1 hidden-xs">
+        <span class="gender">{{record.fields.column_2}}</span>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="col-sm-4 hidden-xs">
+    <br>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">Choose a State</h4>
+      </div>
+      <div class="panel-body">
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=CA'">CA</button>
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=TX'">TX</button>
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=NY'">NY</button>
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=FL'">FL</button>
+        </div>
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=IL'">IL</button>
+          <button type="button" class="btn btn-default" onclick="self.location.href='#/state?st=PA'">PA</button>
+          <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Other.....
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#/state?st=OH">OH</a></li>
+              <li><a href="#/state?st=GA">GA</a></li>
+              <li><a href="#/state?st=MI">MI</a></li>
+              <li><a href="#/state?st=NC">NC</a></li>
+              <li><a href="#/state?st=NJ">NJ</a></li>
+              <li><a href="#/state?st=VA">VA</a></li>
+              <li><a href="#/state?st=WA">WA</a></li>
+              <li><a href="#/state?st=MA">MA</a></li>
+              <li><a href="#/state?st=AZ">AZ</a></li>
+              <li><a href="#/state?st=IN">IN</a></li>
+              <li><a href="#/state?st=TN">TN</a></li>
+              <li><a href="#/state?st=MO">MO</a></li>
+              <li><a href="#/state?st=MD">MD</a></li>
+              <li><a href="#/state?st=WI">WI</a></li>
+              <li><a href="#/state?st=MN">MN</a></li>
+              <li><a href="#/state?st=CO">CO</a></li>
+              <li><a href="#/state?st=AL">AL</a></li>
+              <li><a href="#/state?st=SC">SC</a></li>
+              <li><a href="#/state?st=LA">LA</a></li>
+              <li><a href="#/state?st=KY">KY</a></li>
+              <li><a href="#/state?st=OR">OR</a></li>
+              <li><a href="#/state?st=OK">OK</a></li>
+              <li><a href="#/state?st=CT">CT</a></li>
+              <li><a href="#/state?st=IA">IA</a></li>
+              <li><a href="#/state?st=MS">MS</a></li>
+              <li><a href="#/state?st=AR">AR</a></li>
+              <li><a href="#/state?st=UT">UT</a></li>
+              <li><a href="#/state?st=KS">KS</a></li>
+              <li><a href="#/state?st=NV">NV</a></li>
+              <li><a href="#/state?st=NM">NM</a></li>
+              <li><a href="#/state?st=NE">NE</a></li>
+              <li><a href="#/state?st=WV">WV</a></li>
+              <li><a href="#/state?st=ID">ID</a></li>
+              <li><a href="#/state?st=HI">HI</a></li>
+              <li><a href="#/state?st=ME">ME</a></li>
+              <li><a href="#/state?st=NH">NH</a></li>
+              <li><a href="#/state?st=RI">RI</a></li>
+              <li><a href="#/state?st=MT">MT</a></li>
+              <li><a href="#/state?st=DE">DE</a></li>
+              <li><a href="#/state?st=SD">SD</a></li>
+              <li><a href="#/state?st=AK">AK</a></li>
+              <li><a href="#/state?st=ND">ND</a></li>
+              <li><a href="#/state?st=VT">VT</a></li>
+              <li><a href="#/state?st=WY">WY</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

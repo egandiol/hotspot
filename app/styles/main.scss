@@ -2,9 +2,53 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
+$colorTitle: #A9D0F5;
+$colorName: #5858FA;
+$colorGender: #A4A4A4;
+$colorDescr: #fefefe;
+
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
+
+ul{
+    color:red;
+    li{
+        font-weight:bold;
+        a{
+            font-family:arial;
+        }
+    }
+}
+
+@mixin letterpress($opacity){
+    text-shadow:white($opacity) 0 10px 0;
+}
+
+@function white($opacity){
+    @return rgba(255,255,255,$opacity)
+}
+
+.title {
+    color: $colorTitle;
+    font-size: 48px;
+    @include letterpress(0.20);
+}
+
+.description {
+    color: $colorDescr;
+}
+
+.name {
+    color: $colorName;
+}
+
+.content {
+}
+
+.gender {
+    color: $colorGender;
+}
 
 .browsehappy {
     margin: 0.2em 0;
